@@ -13,19 +13,17 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
         ## in the 'id' vector (ignoring NA values)
 
 files <- list.files(directory)
-for (i in 1:length(files)){
+sum <-0
+count <-0
+
+for (i in id){ 
 	file <- read.csv(paste(directory,"/",files[i],sep=""))
-	#if (which(id==file[1,"ID"],arr.in=TRUE)!=0){
-	  if (file[1,"ID"]==id){ #mean for one id only
-
-		 pol<-file[,pollutant]
-		meantot<-NULL
-		 meantot<-append(meantot,mean(pol[complete.cases(pol)]))
-
-		break
-	}
+  pol <- file[,pollutant]
+  polok <- pol[complete.cases(pol)]
+	sum <- sum+sum(polok)
+	count <- count+length(polok)
 }
-		 print(mean(meantot))
-
+means <-sum/count
+round(means,digits = 3)
 
 }
