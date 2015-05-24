@@ -50,4 +50,4 @@ library(dplyr)
 
 data_summary <- group_by(data,activity,subject) %>% summarise_each(funs(mean))
 
-#write.table(data_summary,file="data_summary.txt",row.names=FALSE)
+write.table(data_summary,file="data_summary.txt",row.names=FALSE)
